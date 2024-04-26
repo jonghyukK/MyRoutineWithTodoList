@@ -1,5 +1,6 @@
 package com.example.myroutinewithtodolist.ui.common
 
+import androidx.activity.ComponentActivity
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -15,6 +16,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -36,6 +38,8 @@ fun CommonAppBar(
 	showBackButton: Boolean = false,
 	title: String = "",
 ) {
+	val activity = LocalContext.current as? ComponentActivity
+
 	Row(
 		modifier = Modifier
 			.fillMaxWidth()
@@ -48,7 +52,7 @@ fun CommonAppBar(
 		if (showBackButton) {
 			IconButton(
 				modifier = Modifier.size(46.dp),
-				onClick = { }
+				onClick = { activity?.finish() }
 			) {
 				Icon(
 					imageVector = Icons.AutoMirrored.Filled.ArrowBack,
