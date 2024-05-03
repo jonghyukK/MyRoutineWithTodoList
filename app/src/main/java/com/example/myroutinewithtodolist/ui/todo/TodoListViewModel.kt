@@ -1,5 +1,6 @@
 package com.example.myroutinewithtodolist.ui.todo
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.myroutinewithtodolist.model.TodoListItem
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,6 +19,7 @@ class TodoListViewModel : ViewModel() {
 	val todoList = _todoList.asStateFlow()
 
 	init {
+		Log.e("abc123", "TodoListViewModel Init ...")
 		fetchTodoList()
 	}
 
@@ -41,5 +43,14 @@ class TodoListViewModel : ViewModel() {
 		}
 
 		_todoList.value = newList
+	}
+
+	fun addTodoItem(contents: String) {
+		val lastItemId = _todoList.value.last().id
+
+		_todoList.value += TodoListItem(
+			id = lastItemId + 1,
+			contents = contents
+		)
 	}
 }
